@@ -1,7 +1,9 @@
-import { combineReducers } from 'redux';
+import createActionNames from './action-names';
+import createActionCreators from './action-creators';
 
-export default function (options) {
+export default function (resourceName, options) {
   return {
-    reducers: combineReducers({})
+    actions: createActionNames(resourceName),
+    actionCreators: createActionCreators(resourceName, options),
   };
 }
