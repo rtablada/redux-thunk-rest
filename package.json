@@ -7,9 +7,9 @@
   "license": "MIT",
   "scripts": {
     "test": "mocha --require babel-register",
+    "tdd": "nodemon --watch src --watch test --exec 'npm run test'",
     "clean": "rimraf lib dist es coverage",
-    "build": "BABEL_ENV=es NODE_ENV=development rollup -c -i src/index.js -o dist/index.js",
-    "prepublish": "npm run build"
+    "build:umd": "BABEL_ENV=es NODE_ENV=development rollup -c -i src/index.js -o dist/index.js"
   },
   "devDependencies": {
     "babel-core": "^6.23.1",
@@ -20,6 +20,7 @@
     "eslint": "^3.17.1",
     "eslint-config-rtablada": "^4.1.0",
     "mocha": "^3.2.0",
+    "nodemon": "^1.11.0",
     "rollup": "^0.41.4",
     "rollup-plugin-babel": "^2.7.1",
     "rollup-plugin-node-resolve": "^2.0.0",
