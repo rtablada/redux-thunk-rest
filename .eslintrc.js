@@ -1,5 +1,8 @@
 module.exports = {
   extends: 'rtablada',
+  env: {
+    node: true,
+  },
 
   settings: {
     'comma-dangle': ['warning', {
