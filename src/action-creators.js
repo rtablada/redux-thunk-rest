@@ -29,13 +29,30 @@ export default function createActionCreators(resourceName, options) {
   actions.findAll = () => (dispatch) => {
     dispatch(actions.findAllStart());
 
-    return fetch(options.url)
+    const baseUrl = options.findAllUrl || options.url;
+
+    return fetch(baseUrl)
       .then(parseResponse)
       .then((data) => {
         dispatch(actions.findAllSuccess(data));
       })
       .catch((err) => {
         dispatch(actions.findAllError(err));
+      });
+  };
+
+  actions.findOne = id => (dispatch) => {
+    dispatch(actions.findOneStart());
+
+    const baseUrl = options.findOneUrl || options.url;
+
+    return fetch(`${baseUrl}/${id}`)
+      .then(parseResponse)
+      .then((data) => {
+        dispatch(actions.findOneSuccess(data));
+      })
+      .catch((err) => {
+        dispatch(actions.findOneError(err));
       });
   };
 
