@@ -22,9 +22,9 @@ describe('createActionNames', () => {
       updateSuccess: 'BOOK@UPDATE_SUCCESS',
       updateError: 'BOOK@UPDATE_ERROR',
 
-      deleteStart: 'BOOK@DELETE_START',
-      deleteSuccess: 'BOOK@DELETE_SUCCESS',
-      deleteError: 'BOOK@DELETE_ERROR',
+      destroyStart: 'BOOK@DESTROY_START',
+      destroySuccess: 'BOOK@DESTROY_SUCCESS',
+      destroyError: 'BOOK@DESTROY_ERROR',
     });
   });
 
@@ -46,9 +46,9 @@ describe('createActionNames', () => {
       updateSuccess: 'BOOK@UPDATE_SUCCESS',
       updateError: 'BOOK@UPDATE_ERROR',
 
-      deleteStart: 'BOOK@DELETE_START',
-      deleteSuccess: 'BOOK@DELETE_SUCCESS',
-      deleteError: 'BOOK@DELETE_ERROR',
+      destroyStart: 'BOOK@DESTROY_START',
+      destroySuccess: 'BOOK@DESTROY_SUCCESS',
+      destroyError: 'BOOK@DESTROY_ERROR',
     });
   });
 });

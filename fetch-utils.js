@@ -1,5 +1,5 @@
 export function clear() {
-  delete global.fetch;
+  destroy global.fetch;
 }
 
 export function setupFetch(data) {

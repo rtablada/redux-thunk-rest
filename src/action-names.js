@@ -22,8 +22,8 @@ export default function (resourceName) {
     updateSuccess: `${prefix}@UPDATE_SUCCESS`,
     updateError: `${prefix}@UPDATE_ERROR`,
 
-    deleteStart: `${prefix}@DELETE_START`,
-    deleteSuccess: `${prefix}@DELETE_SUCCESS`,
-    deleteError: `${prefix}@DELETE_ERROR`,
+    destroyStart: `${prefix}@DESTROY_START`,
+    destroySuccess: `${prefix}@DESTROY_SUCCESS`,
+    destroyError: `${prefix}@DESTROY_ERROR`,
   };
 }
