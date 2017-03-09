@@ -5,7 +5,6 @@
       {
         "es2017": false,
         "es2015": {
-          "modules": false
         }
       }
     ]
