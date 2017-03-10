@@ -138,3 +138,38 @@ reducer = combineReducers({
   },
 });
 ```
+
+## Customization
+
+There are some basic ways to customize the reducers and action creators created by `createResource`:
+
+### Customizing The Primary Key
+
+Some servers do use `id` as the primary key for resources.
+In the options object, a `primaryKey` property can be passed to customize the primaryKey that is used for `unionBy` de-duplication.
+
+Ex.
+
+```js
+const { actions, actionCreators, reducer } = createResource('book', {
+  url: 'http://myapi.com/api/posts',
+  primaryKey: 'slug'
+});
+```
+
+### Customizing The Reducers
+
+To add custom reducers to the reducer created by `createResource`, a `reducers` object with custom action types can be added to customize the reducer for both `loading` and `items`.
+
+Ex.
+
+```js
+const { actions, actionCreators, reducer } = createResource('book', {
+  url: 'http://myapi.com/api/books',
+  reducers: {
+    items: {
+      'BOOKS@CLEAR': (state, action) => return [];
+    }
+  }
+});
+```
