@@ -39,7 +39,7 @@ export default function createReducer(resourceName, options) {
       }
     },
 
-    items: (state = [], action) {
+    items: (state = [], action) => {
       if (itemsCustomReducers[action.type]) {
         return itemsCustomReducers[action.type](state, action);
       }
@@ -54,7 +54,7 @@ export default function createReducer(resourceName, options) {
         case actions.updateSuccess:
           return unionBy([action.data], state, 'id');
         case actions.destroySuccess:
-          return state.filter((x) => x.id === action.id);
+          return state.filter(x => x.id === action.id);
         default:
           return state;
       }
