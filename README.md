@@ -21,9 +21,9 @@ Using the `reduxThunkRest` function from this package will create an object with
 To work with resourceful REST APIs.
 
 ```js
-import reduxThunkRest from 'redux-thunk-rest';
+import createResource from 'redux-thunk-rest';
 
-const { actions, actionCreators, reducer } = reduxThunkRest('book', {
+const { actions, actionCreators, reducer } = createResource('book', {
   url: 'http://myapi.com/api/books'
 });
 ```
