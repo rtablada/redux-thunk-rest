@@ -9,6 +9,8 @@ export default function createReducer(resourceName, options) {
   const loadingCustomReducers = customReducers.loading || {};
   const itemsCustomReducers = customReducers.items || {};
 
+  const { primaryKey = 'id' } = options;
+
   return combineReducers({
     loading: (state = null, action) => {
       if (loadingCustomReducers[action.type]) {
@@ -46,15 +48,15 @@ export default function createReducer(resourceName, options) {
 
       switch (action.type) {
         case actions.findAllSuccess:
-          return unionBy(action.data, state, 'id');
+          return unionBy(action.data, state, primaryKey);
         case actions.findOneSuccess:
-          return unionBy([action.data], state, 'id');
+          return unionBy([action.data], state, primaryKey);
         case actions.createSuccess:
-          return unionBy([action.data], state, 'id');
+          return unionBy([action.data], state, primaryKey);
         case actions.updateSuccess:
-          return unionBy([action.data], state, 'id');
+          return unionBy([action.data], state, primaryKey);
         case actions.destroySuccess:
-          return state.filter(x => x.id === action.id);
+          return state.filter(x => x[primaryKey] === action[primaryKey]);
         default:
           return state;
       }
