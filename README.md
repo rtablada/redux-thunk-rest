@@ -108,7 +108,7 @@ actionCreators = {
     destroy: (id) => (dispatch) => {
       dispatch({ type: action.findAllStart })
       fetch(`http://myapi.com/api/books/${id}`, {
-        method: 'DESTROY',
+        method: 'DELETE',
       }).then((d) => dispatch(actionCreators.updateSuccess(d)))
         .catch((d) => dispatch(actionCreators.updateError(d)));
     },
