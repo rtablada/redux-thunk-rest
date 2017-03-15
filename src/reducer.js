@@ -7,6 +7,7 @@ export default function createReducer(resourceName, options) {
 
   const customReducers = options.reducers || {};
   const loadingCustomReducers = customReducers.loading || {};
+  const errorCustomReducers = customReducers.error || {};
   const itemsCustomReducers = customReducers.items || {};
 
   const { primaryKey = 'id' } = options;
@@ -36,6 +37,35 @@ export default function createReducer(resourceName, options) {
         case actions.updateError:
         case actions.destroyError:
           return 'error';
+        default:
+          return state;
+      }
+    },
+
+    error: (state = null, action) => {
+      if (loadingCustomReducers[action.type]) {
+        return errorCustomReducers[action.type](state, action);
+      }
+
+      switch (action.type) {
+        case actions.findAllStart:
+        case actions.findOneStart:
+        case actions.createStart:
+        case actions.updateStart:
+        case actions.destroyStart:
+          return null;
+        case actions.findAllSuccess:
+        case actions.findOneSuccess:
+        case actions.createSuccess:
+        case actions.updateSuccess:
+        case actions.destroySuccess:
+          return null;
+        case actions.findAllError:
+        case actions.findOneError:
+        case actions.createError:
+        case actions.updateError:
+        case actions.destroyError:
+          return action.data;
         default:
           return state;
       }

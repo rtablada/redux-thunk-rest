@@ -120,6 +120,7 @@ actionCreators = {
 
 reducer = combineReducers({
   loading: (state = null, action) => { ... } // Changes loading state to null, "start", or "error" depending on actions
+  error: (state = null, action) => { ... } // Changes adds parsed JSON error information on "error" clears on start/success action
   items: (state = [], action) => {
     switch (action.type) {
       case actions.findAllSuccess:
