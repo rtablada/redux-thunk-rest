@@ -23,9 +23,20 @@ To work with resourceful REST APIs.
 ```js
 import createResource from 'redux-thunk-rest';
 
-const { actions, actionCreators, reducer } = createResource('book', {
-  url: 'http://myapi.com/api/books'
+const bookResource = createResource('book', {
+  url: 'http://myapi.com/api/books',
 });
+
+// Using the reducers
+const reducer = combineReducers({
+  books: bookResource.reducer,
+});
+
+// Using the action creator
+// const findAll = bookResource.actionCreators.findAll
+const { actionCreators: { findAll } } = bookResource;
+
+store.dispatch(findAll());
 ```
 
 This code will create:
