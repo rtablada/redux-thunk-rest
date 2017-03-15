@@ -42,6 +42,7 @@ export default function createActionCreators(resourceName, options) {
         dispatch(actions.findAllSuccess(data));
       }).catch((err) => {
         dispatch(actions.findAllError(err));
+        throw err;
       });
   };
 
@@ -56,6 +57,7 @@ export default function createActionCreators(resourceName, options) {
         dispatch(actions.findOneSuccess(data));
       }).catch((err) => {
         dispatch(actions.findOneError(err));
+        throw err;
       });
   };
 
@@ -73,6 +75,7 @@ export default function createActionCreators(resourceName, options) {
         dispatch(actions.createSuccess(data));
       }).catch((err) => {
         dispatch(actions.createError(err));
+        throw err;
       });
   };
 
@@ -90,6 +93,7 @@ export default function createActionCreators(resourceName, options) {
         dispatch(actions.updateSuccess(data));
       }).catch((err) => {
         dispatch(actions.updateError(err));
+        throw err;
       });
   };
 
@@ -105,6 +109,7 @@ export default function createActionCreators(resourceName, options) {
       dispatch(actions.detstroySuccess(data));
     }).catch((err) => {
       dispatch(actions.detstroyError(err));
+      throw err;
     });
   };
 
