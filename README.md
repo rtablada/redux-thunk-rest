@@ -102,7 +102,7 @@ actionCreators = {
     createSuccess: (data) => ({ type: actions.createSuccess, data }),
     createError: (data) => ({ type: actions.createError, data }),
 
-    create: (id, formValues) => (dispatch) => {
+    update: (id, formValues) => (dispatch) => {
       dispatch({ type: action.findAllStart })
       fetch(`http://myapi.com/api/books/${id}`, {
         method: 'PUT',
