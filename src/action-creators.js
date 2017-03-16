@@ -20,8 +20,13 @@ const headers = {
   'Content-Type': 'application/json',
 };
 
+function buildHeaders(createHeaders) {
+  return Object.assign({}, headers, createHeaders());
+}
+
 export default function createActionCreators(resourceName, options) {
   const actionNames = createActionNames(resourceName);
+  const createHeaders = options.createHeaders || (() => ({}));
 
   const actions = {};
 
@@ -68,7 +73,7 @@ export default function createActionCreators(resourceName, options) {
 
     return fetch(baseUrl, {
       method: 'POST',
-      headers,
+      headers: buildHeaders(createHeaders),
       body: JSON.stringify(formData),
     }).then(parseResponse)
       .then((data) => {
@@ -86,7 +91,7 @@ export default function createActionCreators(resourceName, options) {
 
     return fetch(`${baseUrl}/${id}`, {
       method: 'PUT',
-      headers,
+      headers: buildHeaders(createHeaders),
       body: JSON.stringify(formData),
     }).then(parseResponse)
       .then((data) => {
@@ -104,7 +109,7 @@ export default function createActionCreators(resourceName, options) {
 
     return fetch(`${baseUrl}/${id}`, {
       method: 'DELETE',
-      headers,
+      headers: buildHeaders(createHeaders),
     }).then((data) => {
       dispatch(actions.detstroySuccess(data));
     }).catch((err) => {

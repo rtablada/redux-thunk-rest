@@ -185,3 +185,12 @@ const { actions, actionCreators, reducer } = createResource('book', {
   }
 });
 ```
+
+### Customizing Request Headers
+
+```js
+const { actions, actionCreators, reducer } = createResource('book', {
+  url: 'http://myapi.com/api/books',
+  createHeaders: () => ({ Authorization: `Bearer ${localStorage.auth}`})
+});
+```
