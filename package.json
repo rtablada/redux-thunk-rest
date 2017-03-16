@@ -1,6 +1,6 @@
 {
   "name": "redux-thunk-rest",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "An opinionated toolset for redux-thunk reducers and action creators for REST servers.",
   "main": "src/index.js",
   "author": "Ryan Tablada",
