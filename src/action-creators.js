@@ -41,8 +41,10 @@ export default function createActionCreators(resourceName, options) {
 
     const baseUrl = options.findAllUrl || options.url;
 
-    return fetch(baseUrl)
-      .then(parseResponse)
+    return fetch(baseUrl, {
+      method: 'GET',
+      headers: buildHeaders(createHeaders),
+    }).then(parseResponse)
       .then((data) => {
         dispatch(actions.findAllSuccess(data));
       }).catch((err) => {
@@ -56,8 +58,10 @@ export default function createActionCreators(resourceName, options) {
 
     const baseUrl = options.findOneUrl || options.url;
 
-    return fetch(`${baseUrl}/${id}`)
-      .then(parseResponse)
+    return fetch(`${baseUrl}/${id}`, {
+      method: 'GET',
+      headers: buildHeaders(createHeaders),
+    }).then(parseResponse)
       .then((data) => {
         dispatch(actions.findOneSuccess(data));
       }).catch((err) => {
