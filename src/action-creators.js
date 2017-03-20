@@ -24,6 +24,20 @@ function buildHeaders(createHeaders) {
   return Object.assign({}, headers, createHeaders());
 }
 
+function catchError(dispatch, actionCreator) {
+  return (err) => {
+    if (err && err.then) {
+      return err.then((data) => {
+        dispatch(actionCreator(data));
+
+        throw data;
+      });
+    } else {
+      throw err;
+    }
+  };
+}
+
 export default function createActionCreators(resourceName, options) {
   const actionNames = createActionNames(resourceName);
   const createHeaders = options.createHeaders || (() => ({}));
@@ -47,10 +61,7 @@ export default function createActionCreators(resourceName, options) {
     }).then(parseResponse)
       .then((data) => {
         dispatch(actions.findAllSuccess(data));
-      }).catch((err) => {
-        dispatch(actions.findAllError(err));
-        throw err;
-      });
+      }).catch(catchError(dispatch, actions.findAllError));
   };
 
   actions.findOne = id => (dispatch) => {
@@ -64,10 +75,7 @@ export default function createActionCreators(resourceName, options) {
     }).then(parseResponse)
       .then((data) => {
         dispatch(actions.findOneSuccess(data));
-      }).catch((err) => {
-        dispatch(actions.findOneError(err));
-        throw err;
-      });
+      }).catch(catchError(dispatch, actions.findOneError));
   };
 
   actions.create = formData => (dispatch) => {
@@ -82,10 +90,7 @@ export default function createActionCreators(resourceName, options) {
     }).then(parseResponse)
       .then((data) => {
         dispatch(actions.createSuccess(data));
-      }).catch((err) => {
-        dispatch(actions.createError(err));
-        throw err;
-      });
+      }).catch(catchError(dispatch, actions.createError));
   };
 
   actions.update = (id, formData) => (dispatch) => {
@@ -100,10 +105,7 @@ export default function createActionCreators(resourceName, options) {
     }).then(parseResponse)
       .then((data) => {
         dispatch(actions.updateSuccess(data));
-      }).catch((err) => {
-        dispatch(actions.updateError(err));
-        throw err;
-      });
+      }).catch(catchError(dispatch, actions.updateError));
   };
 
   actions.detstroy = id => (dispatch) => {
@@ -116,10 +118,7 @@ export default function createActionCreators(resourceName, options) {
       headers: buildHeaders(createHeaders),
     }).then((data) => {
       dispatch(actions.detstroySuccess(data));
-    }).catch((err) => {
-      dispatch(actions.detstroyError(err));
-      throw err;
-    });
+    }).catch(catchError(dispatch, actions.detstroyError));
   };
 
   return actions;
